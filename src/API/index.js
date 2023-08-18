@@ -3,15 +3,21 @@ const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`
 
 // Message component (WIP)
 
+// Need Auth token to see the message path
 const fetchMessages = async () => {
+
   try {
-    //dont think this link path works
-    const response = await fetch(`${BASE_URL}/posts/messages`)
-    const result = await response.json()
-    console.log(result)
+    const response = await fetch(`${BASE_URL}/users/me`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${TOKEN_STRING_HERE}`
+      },
+    });
+    const result = await response.json();
+    console.log(result);
     return result
-  } catch (error) {
-    console.error('Error fetching messages:', error)
+  } catch (err) {
+    console.error(err);
   }
 }
 

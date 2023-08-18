@@ -6,18 +6,7 @@ const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`
 const fetchMessages = async () => {
   try {
     //dont think this link path works
-    const response = await fetch(`${BASE_URL}/posts/messages`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${TOKEN_STRING_HERE}`,
-      },
-      body: JSON.stringify({
-        message: {
-          content: '',
-        },
-      }),
-    })
+    const response = await fetch(`${BASE_URL}/posts/messages`)
     const result = await response.json()
     console.log(result)
     return result

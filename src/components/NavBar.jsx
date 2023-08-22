@@ -9,6 +9,7 @@ export default function NavBar () {
             <Link to="/posts" className='nav-link'>Posts</Link>
             <Link to="/profile" className='nav-link'>Profile</Link>
             <Link to="/login" className= 'nav-link'>Log In</Link>
+            <Link to="/" className="home">Home</Link>
             </div>
          </nav>
 

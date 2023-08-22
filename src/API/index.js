@@ -1,6 +1,7 @@
 const COHORT_NAME = '2305-FTB-ET-WEB-PT'
 const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`
-
+const TOKEN_STRING_HERE =  ""
+const POST_ID = ""
 // Message component (WIP)
 
 // Need Auth token to see the message path
@@ -43,3 +44,5 @@ const postMessage = async () => {
     console.error(err)
   }
 }
+
+

@@ -1,7 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 // import Proptypes from "prop-types"
 
-
 export default function Post({ posts }) {
   const params = useParams();
   console.log(posts)

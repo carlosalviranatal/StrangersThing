@@ -1,42 +1,34 @@
-import React, { useState } from 'react';
-const COHORT_NAME = '2301-ftb-mt-web'
-const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`
+/* eslint-disable react/no-unescaped-entities */
+import { useState } from 'react';
+import { loginUser } from '../API';
+import { Link, useNavigate } from 'react-router-dom';
 
-const Login = () => {
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
 
-    async function handleSubmit(event) {
-        event.preventDefault()
 
-        sessionStorage.setItem('token', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU1NjM2NzQ3MjE5NDAwMTQwMTAyZDYiLCJ1c2VybmFtZSI6IklyYXFpdmV0MTk3OSIsImlhdCI6MTY5Mjc1OTE1M30.6cClVnlIrynuZwL3cqoCemqWRC9tB0EbAXDfwk7zkAA")
-        let personName = sessionStorage.getItem('token')
-        
-        try {
-          const response = await fetch(`${BASE_URL}/users/login`, {
-            method: "POST",
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              user: {
-                username: username,
-                password: password
-              }
-            })
-          });
-          const result = await response.json();
-          console.log(result);
-          return result
-        } catch (err) {
-          console.error(err);
-        }
-      }
+// eslint-disable-next-line react/prop-types
+const Login = ({username, setUsername, password, setPassword, setIsLoggedIn,}) => {
+  const [errorMessage, setErrorMessage] = useState('')
+  let navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setErrorMessage('')
+    
+    const token = await loginUser(username, password);
+    if (token) {
+      setIsLoggedIn(true);
+      localStorage.setItem('user', token);
+      navigate('/Profile');
+    } else {
+      setErrorMessage('Invalid username or password'); 
+    }
+  };
 
     return ( 
     
     <>
     <h2>Login</h2>
+    {errorMessage && <p className="error-message">{errorMessage}</p>}
     <form className='loginForm' onSubmit={handleSubmit}>
     <label>
                 Username: 
@@ -53,7 +45,13 @@ const Login = () => {
                 placeholder='Type password here..'/>
             </label>
         <button>Log in</button>
+
+        <Link to={"/register"}>
+          Don't have an account? Register here!
+        </Link>
     </form> 
+
+
     </>
     
     );

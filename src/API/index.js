@@ -1,26 +1,6 @@
 const COHORT_NAME = '2305-FTB-ET-WEB-PT'
 const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`
-// const TOKEN_STRING_HERE =  ""
-// const POST_ID = ""
-// Message component (WIP)
 
-// Need Auth token to see the message path
-// const fetchMessages = async () => {
-
-//   try {
-//     const response = await fetch(`${BASE_URL}/users/me`, {
-//       headers: {
-//         'Content-Type': 'application/json',
-//         'Authorization': `Bearer ${TOKEN_STRING_HERE}`
-//       },
-//     });
-//     const result = await response.json();
-//     console.log(result);
-//     return result
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
 
 export const fetchPosts = async () => {
   try {
@@ -40,31 +20,93 @@ export const fetchPosts = async () => {
   }
 }
 
+export const loginUser = async (username, password) => {
+try {
+  const response = await fetch(`${BASE_URL}/users/login`, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      user: {
+        username: username,
+        password: password
+      }
+    })
+  });
+  const result = await response.json();
+  const token = result.data.token
+  console.log(result);
+  return token
+} catch (err) {
+  console.error(err);
+}
+}
 
+export const registerUser = async (username, password) => {
+  try {
+    const response = await fetch(`${BASE_URL}/users/register`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user:{
+        username: username, 
+        password: password
+        }
+    })
+    });
+    const result = await response.json();
+    const token = result.data.token
+    localStorage.setItem("token", token);
+    localStorage.setItem("username", username)
+    console.log(result);
 
+    return result
+  } catch (err) {
+    console.error(err);
+  }
 
+}
 
+export const createPost = async (token, addPost) => {
+  const response = await fetch(`${BASE_URL}/posts`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      post: addPost,
+    }),
+  });
+  const result = await response.json();
+  const newPost = result.data.post;
+  return newPost;
+}
 
-// Need POST_ID PROP AND TOKEN PROP probably??
-// const postMessage = async () => {
-//   try {
-//     const response = await fetch(`${BASE_URL}/posts/${POST_ID}/messages`, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//         Authorization: `Bearer ${TOKEN_STRING_HERE}`,
-//       },
-//       body: JSON.stringify({
-//         message: {
-//           content: '',
-//         },
-//       }),
-//     })
-//     const result = await response.json()
-//     console.log(result)
-//     return result
-//   } catch (err) {
-//     console.error(err)
-//   }
-// }
+export const deletePosts = async (token, postId) => {
+  const response = await fetch(`${BASE_URL}/posts/${postId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const result = await response.json();
+  return result;
+};
+
+export const getProfile = async (token) => {
+  const response = await fetch(`${BASE_URL}/users/me`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const result = await response.json();
+  const myPosts = result.data;
+  return myPosts;
+};
 

@@ -15,6 +15,7 @@ export default function Posts({posts}) {
 
   return (
     <div>
+       <h1><Link to="/CreatePost">Add a post!</Link></h1>
       {posts.map((post) => (
           <div key={post.id}>
             <h1>{post.title}</h1>

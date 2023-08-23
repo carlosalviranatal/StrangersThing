@@ -25,7 +25,7 @@ export default function Posts({posts}) {
         ))}
       {posts?.map((post) => {
         return (
-          <div>
+          <div className="linkDiv">
   <h1><Link to={`/post/${post._id}`}>{post.title}</Link></h1>
   <p>{post.description}</p>
   <p>{post.author.username}</p>

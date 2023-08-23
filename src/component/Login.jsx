@@ -8,8 +8,10 @@ const Login = () => {
 
     async function handleSubmit(event) {
         event.preventDefault()
-    
 
+        sessionStorage.setItem('token', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU1NjM2NzQ3MjE5NDAwMTQwMTAyZDYiLCJ1c2VybmFtZSI6IklyYXFpdmV0MTk3OSIsImlhdCI6MTY5Mjc1OTE1M30.6cClVnlIrynuZwL3cqoCemqWRC9tB0EbAXDfwk7zkAA")
+        let personName = sessionStorage.getItem('token')
+        
         try {
           const response = await fetch(`${BASE_URL}/users/login`, {
             method: "POST",
@@ -18,8 +20,8 @@ const Login = () => {
             },
             body: JSON.stringify({
               user: {
-                username: 'username',
-                password: 'password'
+                username: username,
+                password: password
               }
             })
           });

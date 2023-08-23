@@ -25,13 +25,13 @@ async function handleSubmit(event) {
             user:{
             name: name,
             email: email,
-            username: setUsername, 
-            password: setPassword
+            username: username, 
+            password: password
             }
         })
         });
         const result = await response.json();
-        console.log(result.data.token);
+        console.log(result);
         console.log(username)
         console.log(password)
         return result

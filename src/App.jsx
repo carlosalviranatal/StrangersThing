@@ -8,14 +8,12 @@ import Profile from './components/Profile';
 // import SignUp from './component/SignUp'
 import { Routes, Route } from 'react-router-dom'
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { fetchPosts } from "./API";
+import CreatePost from './components/CreatePost';
 
 export default function App() {
   const [posts, setPosts] = useState(null);
   const [error, setError] = useState(null);
-  const [searchParam, setSearchParam] = useState("");
-  const navigate = useNavigate();
   console.log(posts)
   useEffect(() => {
     async function getPosts() {
@@ -36,6 +34,7 @@ export default function App() {
 //   <SignUp />
 //   <Authenticate /> */}
     <NavBar/>
+    <CreatePost/>
     <Routes>
       {/* <Route path="/" element={<Posts/>} /> */}
       <Route path="/posts" element={<Posts posts={posts}/>} />

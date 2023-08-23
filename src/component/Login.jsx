@@ -1,50 +1,42 @@
 import React, { useState } from 'react';
-
 const COHORT_NAME = '2301-ftb-mt-web'
 const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`
 
-
-
 const Login = () => {
-const [username, setUsername] = useState("")
-const [password, setPassword] = useState("")
-const [error, setError] = useState(null)
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
 
-async function handleSubmit(event) {
-    event.preventDefault()
+    async function handleSubmit(event) {
+        event.preventDefault()
+    
 
-    try {
-        const response = await fetch(`${BASE_URL}/users/login`, {
-          method: "POST",
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            user:{
-            username: setUsername, 
-            password: setPassword
-            }
-        })
-        });
-        const result = await response.json();
-        console.log(result);
-        console.log(username)
-        console.log(password)
-        return result
-      } catch (err) {
-        console.error(err);
+        try {
+          const response = await fetch(`${BASE_URL}/users/login`, {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              user: {
+                username: 'username',
+                password: 'password'
+              }
+            })
+          });
+          const result = await response.json();
+          console.log(result);
+          return result
+        } catch (err) {
+          console.error(err);
+        }
       }
-      console.log(password)
-}
 
     return ( 
     
     <>
-    <div>
-        <h2>Login</h2>
-        {error && <p>{error}</p>}
-        <form className='login' onSubmit={handleSubmit}>
-            <label>
+    <h2>Login</h2>
+    <form className='loginForm' onSubmit={handleSubmit}>
+    <label>
                 Username: 
                 <input 
                 value={username}
@@ -58,10 +50,9 @@ async function handleSubmit(event) {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder='Type password here..'/>
             </label>
-            <button>Log In</button>
-        </form>
-    </div>
-    </> 
+        <button>Log in</button>
+    </form> 
+    </>
     
     );
 }

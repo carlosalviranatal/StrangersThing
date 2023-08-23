@@ -10,11 +10,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .logo {
   font-size: 2rem;
-
+  color: red;
 }
 
 .nav-links {
@@ -33,3 +35,24 @@
 .nav-link:hover {
   background-color: #555;
 }
+
+/* .loginScreen {
+  display: block;
+  padding: 5px;
+  margin: 5px;
+  text-shadow: ;
+} */
+
+.loginBtn {
+  color: red;
+  width: 200px;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40%;
+  margin-right: 40%;
+  
+}
+

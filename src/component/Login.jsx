@@ -30,21 +30,21 @@ const Login = ({username, setUsername, password, setPassword, setIsLoggedIn,}) =
     <h2>Login</h2>
     {errorMessage && <p className="error-message">{errorMessage}</p>}
     <form className='loginForm' onSubmit={handleSubmit}>
-    <label>
+    <label className="loginScreen">
                 Username: 
-                <input 
+                <input  
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder='Type username here..'/>
             </label>
-            <label>
+            <label className="loginScreen">
                 Password:
                 <input 
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder='Type password here..'/>
             </label>
-        <button>Log in</button>
+        <button className="loginBtn">Log in</button>
 
         <Link to={"/register"}>
           Don't have an account? Register here!

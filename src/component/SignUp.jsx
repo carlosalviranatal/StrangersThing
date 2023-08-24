@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const COHORT_NAME = '2301-ftb-mt-web'
 const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`
@@ -11,6 +12,7 @@ const [password, setPassword] = useState("")
 const [name, setName] = useState('')
 const [email, setEmail] = useState('')
 const [error, setError] = useState(null)
+const navigate = useNavigate()
 
 async function handleSubmit(event) {
     event.preventDefault()
@@ -32,11 +34,12 @@ async function handleSubmit(event) {
         });
         const result = await response.json();
         console.log(result);
-        console.log(username)
-        console.log(password)
+        navigate('/')
+   
         return result
       } catch (err) {
         console.error(err);
+        alert('Failed to successfully login')
       }
       console.log(password)
 }

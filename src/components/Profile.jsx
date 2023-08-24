@@ -30,7 +30,7 @@ const Profile = () => {
         myMessagesLength > 0 ? myInfo.messages.map((message) => {
           return(
             <div key={message._id}>
-              <p>{message.content}</p>
+              <p className="messageCont">{message.content}</p>
 
             </div>
           )

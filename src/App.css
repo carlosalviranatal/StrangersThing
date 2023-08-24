@@ -66,3 +66,12 @@
   padding: 40px;
   box-shadow: 2px 2px 20px 2px black;
 }
+
+.messageCont {
+  display: flex;
+  flex-direction: column;
+  border: solid white;
+  margin: 40px;
+  padding: 40px;
+  box-shadow: 2px 2px 20px 2px black;
+}

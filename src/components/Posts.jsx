@@ -20,7 +20,7 @@ export default function Posts({ posts, getPosts, setPosts }) {
   return (
     <div>
       <form className="search-bar">
-        <label htmlFor="search-term">Search: </label>
+        <label htmlFor="search-term"></label>
         <input name="search-term" type="text" placeholder="search" />
       </form>
       <h1>

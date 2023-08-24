@@ -1,4 +1,6 @@
+/*eslint-disable*/
 import { useParams, Link } from "react-router-dom";
+import PostMessages from "./PostMessages";
 // import Proptypes from "prop-types"
 
 export default function Post({ posts }) {
@@ -19,6 +21,7 @@ export default function Post({ posts }) {
   <p>{post.author.username}</p>
   <p>{post.price}</p>
   <p>{post.location}</p>
+  <PostMessages />
 </div>
 }
 

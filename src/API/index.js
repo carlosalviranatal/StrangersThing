@@ -2,9 +2,15 @@ const COHORT_NAME = '2305-FTB-ET-WEB-PT'
 const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`
 
 
-export const fetchPosts = async () => {
+export const fetchPosts = async (token) => {
   try {
-    const response = await fetch(`${BASE_URL}/posts`)
+
+    const response = await fetch(`${BASE_URL}/posts` ,{
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    })
     console.log(response)
     
       // headers: {
@@ -35,7 +41,9 @@ try {
     })
   });
   const result = await response.json();
-  const token = result.data.token
+  const token = result?.data?.token
+  localStorage.setItem("token", token);
+  localStorage.setItem("username", username)
   console.log(result);
   return token
 } catch (err) {
@@ -58,7 +66,7 @@ export const registerUser = async (username, password) => {
     })
     });
     const result = await response.json();
-    const token = result.data.token
+    const token = result?.data?.token
     localStorage.setItem("token", token);
     localStorage.setItem("username", username)
     console.log(result);
@@ -86,7 +94,8 @@ export const createPost = async (token, addPost) => {
   return newPost;
 }
 
-export const deletePosts = async (token, postId) => {
+export const deletePosts = async (postId, token) => {
+  console.log(token, postId)
   const response = await fetch(`${BASE_URL}/posts/${postId}`, {
     method: "DELETE",
     headers: {
@@ -109,4 +118,50 @@ export const getProfile = async (token) => {
   const myPosts = result.data;
   return myPosts;
 };
+
+export const myData = async (token) => {
+
+  try {
+    const response = await fetch(`${BASE_URL}/users/me`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+    return result
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export const postMessage = async (token, PostId, message) => {
+  try {
+    const response = await fetch(`${BASE_URL}/posts/${PostId}/messages`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        message: {
+          content: message
+        }
+      })
+    });
+    const result = await response.json();
+    console.log(result);
+    return result
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+
+/*eslint-disable*/
+const COHORT = '2305-FTB-ET-WEB-PT'
+const baseUrl = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`
+
+
 

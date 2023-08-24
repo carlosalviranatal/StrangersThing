@@ -12,6 +12,7 @@ import CreatePost from './components/CreatePost'
 import SignUp from './component/SignUp'
 import Home from './components/Home'
 
+
 export default function App() {
   const [posts, setPosts] = useState(null)
   // eslint-disable-next-line no-unused-vars
@@ -27,16 +28,27 @@ export default function App() {
       setIsLoggedIn(true)
     }
   }, [])
+  
+  
+  let token = localStorage.getItem("token")
+  async function getPosts() {
+    let APIData 
+    if (localStorage.getItem('token')) {
+      APIData = await fetchPosts(token)
+    } else {
+      APIData = await fetchPosts()
+    }
+    if (APIData.success) {
+      setPosts(APIData.data.posts)
+    } else {
+      setError(APIData.status)
+    }
+  }
+  
 
   useEffect(() => {
-    async function getPosts() {
-      let APIData = await fetchPosts()
-      if (APIData.success) {
-        setPosts(APIData.data.posts)
-      } else {
-        setError(APIData.status)
-      }
-    }
+    
+    
     getPosts()
   }, [])
 
@@ -76,7 +88,7 @@ export default function App() {
             />
           }
         />
-        <Route path="/posts" element={<Posts posts={posts} />} />
+        <Route path="/posts" element={<Posts posts={posts} getPosts={getPosts} />} />
         <Route
           path="/profile"
           element={<Profile myInfo={myInfo} setMyInfo={setMyInfo} />}

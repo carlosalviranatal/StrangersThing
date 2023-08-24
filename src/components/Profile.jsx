@@ -1,16 +1,19 @@
 /* eslint-disable no-inner-declarations */
 import { useState, useEffect } from "react";
-import { getProfile } from "../API";
+import { getProfile, myData } from "../API";
+
 
 const Profile = () => {
   const [myInfo, setMyInfo] = useState({});
-
+  const [myMessagesLength, setMymessagesLength] = useState(0);
   useEffect(() => {
     let token = localStorage.getItem("token");
     if (token) {
       async function getMyInfo() {
-        const returnedInfo = await getProfile(token);
-        setMyInfo(returnedInfo);
+        const returnedInfo = await myData(token);
+        console.log(returnedInfo)
+        setMyInfo(returnedInfo.data);
+        setMymessagesLength(returnedInfo.data.messages.length)
       }
       getMyInfo();
     }
@@ -19,8 +22,21 @@ const Profile = () => {
   return (
     <div className="box">
       <h1>Welcome to your profile {myInfo.username}!</h1>
-      <div>Your Messages:0</div>
-      <div>You currently have no messages!</div>
+      {
+        myMessagesLength > 0 ? <div>Your Messages:{myMessagesLength}</div> : <div>You currently have no messages!</div>
+      }
+
+      {
+        myMessagesLength > 0 ? myInfo.messages.map((message) => {
+          return(
+            <div key={message._id}>
+              <p>{message.content}</p>
+
+            </div>
+          )
+        }): ""
+      }
+      
     </div>
   )
 };

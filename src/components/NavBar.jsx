@@ -8,6 +8,7 @@ export default function NavBar() {
     localStorage.removeItem('user')
     window.location.reload()
   }
+  
   return (
     <nav className="navbar">
       <Link to="/"><h1 className="logo">Stranger's Things</h1></Link>

@@ -9,9 +9,8 @@ const Login = () => {
     async function handleSubmit(event) {
         event.preventDefault()
 
-        sessionStorage.setItem('token', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU1NjM2NzQ3MjE5NDAwMTQwMTAyZDYiLCJ1c2VybmFtZSI6IklyYXFpdmV0MTk3OSIsImlhdCI6MTY5Mjc1OTE1M30.6cClVnlIrynuZwL3cqoCemqWRC9tB0EbAXDfwk7zkAA")
-        let personName = sessionStorage.getItem('token')
         
+
         try {
           const response = await fetch(`${BASE_URL}/users/login`, {
             method: "POST",
@@ -26,7 +25,10 @@ const Login = () => {
             })
           });
           const result = await response.json();
-          console.log(result);
+          console.log(result)
+          console.log(result?.data?.token);
+          sessionStorage.setItem('token', result.data.token)
+        let personName = sessionStorage.getItem('token')
           return result
         } catch (err) {
           console.error(err);

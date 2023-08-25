@@ -11,6 +11,7 @@ import { fetchPosts } from './API'
 import CreatePost from './components/CreatePost'
 import SignUp from './component/SignUp'
 import Home from './components/Home'
+import UpdatePost from './components/UpdatePost'
 
 
 export default function App() {
@@ -94,6 +95,7 @@ export default function App() {
           element={<Profile myInfo={myInfo} setMyInfo={setMyInfo} />}
         />
         <Route path="/post/:id" element={<Post posts={posts} />} />
+        <Route path="/posts/:id" element={<UpdatePost />} />
       </Routes>
     </>
   )

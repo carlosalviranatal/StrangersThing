@@ -15,7 +15,7 @@ export default function Post({ posts }) {
   }
 
   
-  return <div>
+  return <div className="postWrapper">
   <h1><Link to={`/post/${post._id}`}>{post.title}</Link></h1>
   <p>{post.description}</p>
   <p>{post.author.username}</p>

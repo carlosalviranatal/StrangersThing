@@ -14,6 +14,8 @@
   align-items: center;
   padding-left: 30px;
   padding-right: 30px;
+  position: relative;
+  z-index: 2;
 }
 
 .logo {
@@ -74,4 +76,34 @@
   margin: 40px;
   padding: 40px;
   box-shadow: 2px 2px 20px 2px black;
+}
+
+.UpdateForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.UpdateForm form {
+  text-align: center;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.UpdateForm form label, .UpdateForm form input, .UpdateForm form button{
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.postWrapper form button{
+  display: block;
+  margin: 0 auto;
 }

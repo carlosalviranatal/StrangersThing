@@ -1,5 +1,8 @@
 import { createPost } from '../API'
 import { useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+
 import { useNavigate } from 'react-router-dom'
 
 // eslint-disable-next-line react/prop-types
@@ -11,6 +14,12 @@ export default function CreatePost({ posts, setPosts }) {
   const [errorMessage, setErrorMessage] = useState('') 
 
   const navigate = useNavigate()
+
+  const showToastMessage = () => {
+    toast.success('Post succesfully added !', {
+      position: toast.POSITION.BOTTOM_CENTER
+    })
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -30,6 +39,7 @@ export default function CreatePost({ posts, setPosts }) {
     try {
       const freshPost = await createPost(token, newPost)
       setPosts([...posts, freshPost])
+      showToastMessage()
       navigate('/Posts')
     } catch (error) {
       console.error('Error creating post:', error)

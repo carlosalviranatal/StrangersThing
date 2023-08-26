@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #edb0b0;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -16,7 +16,8 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #493030;
+
   text-decoration: inherit;
 }
 a:hover {
@@ -31,13 +32,13 @@ button {
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  font-style: italic;
+  background-color: #507ac4;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #bb7156;
 }
 button:focus,
 button:focus-visible {
@@ -50,9 +51,18 @@ button:focus-visible {
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: #bb6a23;
   }
   button {
     background-color: #f9f9f9;
+  }
+  h1 {
+    background-color: #ffffff;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: italic;
+    
+  }
+  logo {
+    color: #753636;
   }
 }

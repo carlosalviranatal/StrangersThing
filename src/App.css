@@ -75,3 +75,9 @@
   padding: 40px;
   box-shadow: 2px 2px 20px 2px black;
 }
+
+.likes {
+  display: flex;
+  justify-content: flex-end;
+  
+}

@@ -11,6 +11,9 @@ import { fetchPosts } from './API'
 import CreatePost from './components/CreatePost'
 import SignUp from './component/SignUp'
 import Home from './components/Home'
+import { ToastContainer, toast } from 'react-toastify'
+import LikeButton from './components/LikeButton'
+
 
 
 export default function App() {
@@ -44,7 +47,7 @@ export default function App() {
       setError(APIData.status)
     }
   }
-  
+ 
 
   useEffect(() => {
     
@@ -95,6 +98,8 @@ export default function App() {
         />
         <Route path="/post/:id" element={<Post posts={posts} />} />
       </Routes>
+      <ToastContainer />
+     
     </>
   )
 }

@@ -1,6 +1,8 @@
 import  { useState } from "react";
 import { postMessage } from "../API";
 import { useParams } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 const PostMessages = () => {
     const params = useParams();
@@ -10,6 +12,11 @@ const PostMessages = () => {
   const handleChange = (e) => {
     setMyMessage(e.target.value)
    
+  }
+  const showToastMessage = () => {
+    toast.success('Message Sent !', {
+      position: toast.POSITION.BOTTOM_CENTER
+    })
   }
 
   const handleSubmit = async (e) => {
@@ -24,6 +31,7 @@ const PostMessages = () => {
         const returnedInfo = await postMessage(token, params.id, myMessage);
         // setMyMessage(returnedInfo);
         console.log(returnedInfo)
+        showToastMessage()
       
     }
   };

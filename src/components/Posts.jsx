@@ -6,6 +6,7 @@ import DeletePost from './DeletePost'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { fetchPosts } from '../API'
+import LikeButton from './LikeButton'
 // const navigate = useNavigate()
 // import PostCard from "./PostCard";
 
@@ -30,6 +31,7 @@ export default function Posts({ posts, getPosts, setPosts }) {
       {posts?.map((post) => {
         return (
           <div className="linkDiv">
+            <LikeButton />
             <h1>
               <Link to={`/post/${post._id}`}>{post.title}</Link>
             </h1>

@@ -1,11 +1,21 @@
 /* eslint-disable no-inner-declarations */
 import { useState, useEffect } from "react";
 import { getProfile, myData } from "../API";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 
 const Profile = () => {
   const [myInfo, setMyInfo] = useState({});
   const [myMessagesLength, setMymessagesLength] = useState(0);
+
+  const showToastMessage = () => {
+    toast.success('Login Successful !', {
+      position: toast.POSITION.BOTTOM_CENTER
+    })
+  }
+
+
   useEffect(() => {
     let token = localStorage.getItem("token");
     if (token) {
@@ -14,6 +24,7 @@ const Profile = () => {
         console.log(returnedInfo)
         setMyInfo(returnedInfo.data);
         setMymessagesLength(returnedInfo.data.messages.length)
+        showToastMessage()
       }
       getMyInfo();
     }

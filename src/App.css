@@ -2,28 +2,36 @@
 
 #root {
   text-align: center;
+  background-color: aliceblue;
 }
 
 
 
 .navbar {
-  background-color: #2e2e2e;
-  color: white;
+  background-color: #ad5048;
+  color: rgb(100, 73, 73);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-left: 30px;
   padding-right: 30px;
+ 
 }
 
 .logo {
   font-size: 2rem;
-  color: red;
+  font-style: italic;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: rgb(80, 61, 53);
+
 }
 
 .nav-links {
   display: flex;
   gap: 1rem;
+  color: aliceblue;
+  font-size: x-large;
+  font-style: italic;
 }
 
 .nav-link {
@@ -31,11 +39,11 @@
   text-decoration: none;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
-  transition: background-color 0.3s, color 0.3s;
+  
 }
 
 .nav-link:hover {
-  background-color: #555;
+  background-color: #e98f8f;
 }
 
 /* .loginScreen {
@@ -46,8 +54,9 @@
 } */
 
 .loginBtn {
-  color: red;
+  color: rgb(104, 48, 48);
   width: 200px;
+  font-weight: 400;
 }
 
 .loginForm {
@@ -73,11 +82,27 @@
   border: solid white;
   margin: 40px;
   padding: 40px;
-  box-shadow: 2px 2px 20px 2px black;
+  box-shadow: 2px 2px 20px 2px rgb(243, 243, 243);
 }
 
+<<<<<<< HEAD
 .likes {
   display: flex;
   justify-content: flex-end;
   
 }
+=======
+.h1 {
+  font-size: larger;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-style: italic;
+  color: rgb(31, 22, 22);
+  
+}
+.link {
+  color: antiquewhite;
+}
+
+
+
+>>>>>>> cc9400c15d5236eb0942a4866cc323151a430599

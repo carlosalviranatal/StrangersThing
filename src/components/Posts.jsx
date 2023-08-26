@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { fetchPosts } from '../API'
 // const navigate = useNavigate()
 // import PostCard from "./PostCard";
+import SearchBar from './SearchBar'
 
 
 
@@ -15,14 +16,15 @@ export default function Posts({ posts, getPosts, setPosts }) {
   console.log(posts)
   const [updatedposts, setupdatedPosts] = useState(null)
 
-
-
   return (
     <div>
-      <form className="search-bar">
-        <label htmlFor="search-term"></label>
-        <input name="search-term" type="text" placeholder="search" />
-      </form>
+    <form 
+    className="search-bar">
+    <label htmlFor="search-term"></label>
+    <input name="search-term" type="text" placeholder="search" />
+    </form>
+
+  
       <h1>
         <Link to="/CreatePost">Add a post!</Link>
       </h1>
@@ -49,5 +51,5 @@ export default function Posts({ posts, getPosts, setPosts }) {
         )
       })}
     </div>
-  )
+)
 }
